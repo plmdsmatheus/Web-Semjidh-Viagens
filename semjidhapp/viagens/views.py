@@ -88,21 +88,32 @@ def apagar_viagem(request, id):
     viagem = get_object_or_404(Viagem, id=id)
 
     if request.method == 'POST':
+        # Armazena os dados necessários antes de deletar a viagem
+        data_ida_str = viagem.data_ida.strftime('%d/%m/%Y')
+        destino = viagem.destino
+        # Verifica se há motorista associado e obtém o e-mail, se existir
+        motorista_email = viagem.motorista.email if viagem.motorista else None
+
+        # Deleta a viagem
         viagem.delete()
-        assunto = "VIAGEM CANCELADA!"
-        corpo_email = f""" Uma viagem foi cancelada.
-                    Viagem do dia {viagem.data_ida.strftime('%d/%m/%Y')} de destino {viagem.destino} foi cancelada
-                    """
-        send_mail(
-            assunto,
-            corpo_email,
-            settings.DEFAULT_FROM_EMAIL,
-            [viagem.motorista.email],
-            fail_silently=False,
-        )
+
+        # Se a viagem estiver designada (ou seja, tiver motorista), envia o e-mail
+        if motorista_email:
+            assunto = "VIAGEM CANCELADA!"
+            corpo_email = (
+                f"Uma viagem foi cancelada.\n"
+                f"Viagem do dia {data_ida_str} de destino {destino} foi cancelada."
+            )
+            send_mail(
+                assunto,
+                corpo_email,
+                settings.DEFAULT_FROM_EMAIL,
+                [motorista_email],
+                fail_silently=False,
+            )
         return redirect('listar_viagens')  # Redireciona para a lista de viagens
 
-    # Caso seja um GET, você pode exibir uma confirmação ou mensagem
+    # Para requisições GET, exibe a tela de confirmação
     return render(request, 'confirmar_apagar.html', {'viagem': viagem})
 
 @login_required
