@@ -88,6 +88,7 @@ def apagar_viagem(request, id):
     viagem = get_object_or_404(Viagem, id=id)
 
     if request.method == 'POST':
+        viagem.delete()
         assunto = "VIAGEM CANCELADA!"
         corpo_email = f""" Uma viagem foi cancelada.
                     Viagem do dia {viagem.data_ida.strftime('%d/%m/%Y')} de destino {viagem.destino} foi cancelada
@@ -99,7 +100,6 @@ def apagar_viagem(request, id):
             [viagem.motorista.email],
             fail_silently=False,
         )
-        viagem.delete()
         return redirect('listar_viagens')  # Redireciona para a lista de viagens
 
     # Caso seja um GET, você pode exibir uma confirmação ou mensagem
