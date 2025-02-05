@@ -15,7 +15,7 @@ class Viagem(models.Model):
     servidores = models.TextField()
     motorista = models.ForeignKey(Motorista, null=True, blank=True, on_delete=models.SET_NULL)
     solicitante = models.CharField(null=False, blank=False, max_length=30)
-    processo = models.IntegerField(blank=True, null=True)
+    processo = models.CharField(blank=True, null=True, max_length=23)
     status = models.CharField(max_length=20, choices=[('Pendente', 'Pendente'), ('Atribuída', 'Atribuída'), ('Concluída', 'Concluída')], default='Pendente')
     criada_em = models.DateField(auto_now_add=True)
 
