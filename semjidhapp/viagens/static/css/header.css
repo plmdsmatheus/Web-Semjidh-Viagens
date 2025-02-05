@@ -1,0 +1,40 @@
+header img {
+    max-height: 250px; /* Controla a altura máxima da logo */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Menu de navegação */
+nav ul {
+    display: flex;
+    justify-content: center; /* Centraliza os itens da lista */
+    padding-left: 0;
+}
+
+nav .nav-item {
+    margin: 0 15px; /* Espaçamento entre os itens do menu */
+}
+
+nav a {
+    color: #007bff; /* Cor dos links */
+    font-weight: 500; /* Font weight para destacar */
+}
+
+nav a:hover {
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}
+
+/* Centraliza o título dentro do conteúdo */
+.text-center {
+    text-align: center;
+}
+

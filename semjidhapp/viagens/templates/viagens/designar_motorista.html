@@ -1,0 +1,28 @@
+{% extends 'viagens/base_generic.html' %}
+
+{% block title %}Designar Motorista{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <h2 class="text-dark mb-4">Designar Motorista para a Viagem: <strong>{{ viagem.destino }}</strong></h2>
+
+    <form method="post" class="bg-white p-4 rounded shadow-sm">
+      {% csrf_token %}
+      
+      <!-- Selecione um Motorista -->
+      <div class="mb-3">
+        <label for="motorista" class="form-label">Selecione um Motorista:</label>
+        <select name="motorista" id="motorista" class="form-select">
+          {% for motorista in motoristas %}
+            <option value="{{ motorista.id }}">{{ motorista.nome}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Botão para enviar -->
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Designar</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

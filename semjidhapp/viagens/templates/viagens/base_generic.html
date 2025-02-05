@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Viagens{% endblock %}</title>
+
+    {% load static %}
+    <!-- Link para os arquivos CSS -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-light py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo da Secretaria -->
+            <div>
+                <img src="{% static 'images/SEMJIDH.png' %}" alt="Logo da Secretaria" width="300" >
+            </div>
+        </div>
+    
+        <!-- Menu de navegação -->
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastrar_motorista' %}">Cadastrar Motorista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_motoristas' %}">Listar Motoristas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_viagens' %}">Listar Viagens</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'exportar_viagens' %}" role="button">Exportar Viagens</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Aqui o conteúdo de cada página específica será inserido -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-3">
+        <p>&copy; 2025 Sistema de Viagens</p>
+    </footer>
+</body>
+</html>

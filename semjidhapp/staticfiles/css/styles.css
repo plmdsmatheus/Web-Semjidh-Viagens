@@ -1,0 +1,131 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+
+h2, .list-group-item {
+    color: #212529;
+}
+
+a, .btn {
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+a:hover, .btn:hover {
+    background-color: #007bff;
+}
+
+.list-group-item {
+    border: 1px solid #ddd;
+    box-shadow: none;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo das mensagens de erro ou sucesso */
+.message, .alert {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message {
+    background-color: #f0f8ff; /* Cor suave para mensagens */
+    color: #007bff;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Botão de enviar */
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.list-group-item {
+    font-size: 1.1rem;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: background-color 0.3s;
+}
+
+/* Hover para a lista de motoristas */
+.list-group-item:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+/* Título da página */
+h2 {
+    font-size: 2rem;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+/* Estilo de links ou botões (caso você queira adicionar futuramente) */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

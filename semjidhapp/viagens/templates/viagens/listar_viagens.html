@@ -1,0 +1,42 @@
+{% extends 'viagens/base_generic.html' %}
+
+{% block title %}Listar Viagens{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <h2 class="text-dark">Lista de Viagens</h2>
+        <ul class="list-group">
+            {% for viagem in viagens %}
+                <li class="list-group-item bg-light text-dark mb-3">
+                    <h5>{{ viagem.destino }} - {{ viagem.data_ida }} - 
+                        {% if viagem.status == 'Confirmada' or viagem.status == 'Atribuída' %}
+                            <span class="badge bg-success">{{ viagem.status }}</span>
+                        {% else %}
+                            <span class="badge bg-warning">{{ viagem.status }}</span>
+                        {% endif %}
+                    </h5>
+                    <p class="mb-1"><strong>Servidores:</strong></p>
+                    <ul class="list-unstyled ms-3">
+                        {% for servidores in viagem.servidores_lista %}
+                            <li class="text-dark">{{ servidores }}</li> <!-- Texto escuro -->
+                        {% endfor %}
+                    </ul>
+
+                    {% if viagem.motorista %}
+                        <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
+                    {% endif %}
+
+                    {% if viagem.status == "Pendente" %}
+                        <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">Designar Motorista</a>
+                    {% endif %}
+                    
+                    <!-- Formulário para apagar a viagem -->
+                    <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'viagens/base_generic.html' %}
+
+{% block title %}Cadastrar Motorista{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <h2 class="text-dark">Cadastrar Motorista</h2>
+
+    <!-- Exibindo mensagens de erro ou sucesso -->
+    {% if messages %}
+      <ul class="list-unstyled">
+        {% for message in messages %}
+          <li class="alert alert-info">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <!-- Formulário -->
+    <form method="post" class="mt-4">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.as_p }}
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
