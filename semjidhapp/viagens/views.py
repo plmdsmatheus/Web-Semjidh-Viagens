@@ -78,7 +78,7 @@ def cadastrar_motorista(request):
 @login_required
 def listar_motoristas(request):
     motoristas = Motorista.objects.all()
-    return render(request, 'viagens/listar_motoristas.html', {'motoristas': motoristas})
+    return render(request, 'viagens/listar_motorista.html', {'motoristas': motoristas})
 
 def home(request):
     return render(request, 'home.html')
