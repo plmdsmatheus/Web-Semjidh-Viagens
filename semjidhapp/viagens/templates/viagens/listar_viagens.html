@@ -22,6 +22,9 @@
                         {% endfor %}
                     </ul>
 
+                    <p class="mb-1"><strong>Processo:</strong> {{ viagem.processo }}</p>
+                    
+
                     {% if viagem.motorista %}
                         <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
                     {% endif %}
