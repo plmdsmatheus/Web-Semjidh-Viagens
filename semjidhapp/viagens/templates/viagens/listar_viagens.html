@@ -8,7 +8,7 @@
         <ul class="list-group">
             {% for viagem in viagens %}
                 <li class="list-group-item bg-light text-dark mb-3">
-                    <h5>{{ viagem.destino }} - {{ viagem.data_ida }} - Ida: {{ viagem.horario_ida }} - Volta: {{ viagem.horario_volta }} - 
+                    <h5>{{ viagem.destino }} - {{ viagem.data_ida }} - 
                         {% if viagem.status == 'Confirmada' or viagem.status == 'Atribuída' %}
                             <span class="badge bg-success">{{ viagem.status }}</span>
                         {% else %}
@@ -21,7 +21,7 @@
                             <li class="text-dark">{{ servidores }}</li> <!-- Texto escuro -->
                         {% endfor %}
                     </ul>
-
+                    <p class="mb-1"><strong>Horario de ida:</strong> {{ viagem.horario_ida}} <strong>- Previsão da volta: </strong> {{ viagem.horario_volta }} </p>
                     <p class="mb-1"><strong>Processo:</strong> {{ viagem.processo }}</p>
                     
 
@@ -29,8 +29,16 @@
                         <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
                     {% endif %}
 
-                    {% if viagem.status == "Pendente" %}
-                        <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">Designar Motorista</a>
+                    {% if not viagem.motorista %}
+                        <a href="{% url 'designar_motorista' viagem.id %}"
+                        class="btn btn-primary btn-sm mt-2">
+                        Designar Motorista
+                        </a>
+                    {% else %}
+                        <a href="{% url 'designar_motorista' viagem.id %}"
+                        class="btn btn-secondary btn-sm mt-2">
+                        Alterar Motorista
+                        </a>
                     {% endif %}
                     
                     <!-- Formulário para apagar a viagem -->
