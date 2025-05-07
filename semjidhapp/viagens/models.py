@@ -11,7 +11,9 @@ class Motorista(models.Model):
 class Viagem(models.Model):
     destino = models.CharField(max_length=100)
     data_ida = models.DateField()
+    horario_ida = models.TimeField(verbose_name='Horário de ida')
     data_volta = models.DateField()
+    horario_volta = models.TimeField(verbose_name='Previsão de retorno')
     servidores = models.TextField()
     motorista = models.ForeignKey(Motorista, null=True, blank=True, on_delete=models.SET_NULL)
     solicitante = models.CharField(null=False, blank=False, max_length=30)
