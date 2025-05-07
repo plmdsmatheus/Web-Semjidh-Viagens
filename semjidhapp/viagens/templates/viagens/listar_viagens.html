@@ -21,8 +21,11 @@
                             <li class="text-dark">{{ servidores }}</li> <!-- Texto escuro -->
                         {% endfor %}
                     </ul>
-                    <p class="mb-1"><strong>Horario de ida:</strong> {{ viagem.horario_ida}} <strong>- Previsão da volta: </strong> {{ viagem.horario_volta }} </p>
-                    <p class="mb-1"><strong>Processo:</strong> {{ viagem.processo }}</p>
+                    <p class="mb-1">
+                        {% if not viagem.horario_ida %} <strong>Horario de ida:</strong> Não Definido  {% else %} <strong>Horario de ida:</strong> {{viagem.horario_ida}}
+                        {% if not viagem.horario_volta %} <strong>- Previsão da volta: </strong> Não Definido </p> {% else %} <strong>- Previsão da volta: </strong> {{ viagem.horario_volta }} </p>
+                    
+                    <p class="mb-1"><strong>Processo:</strong> {% if not viagem.processo %} Processo não informado {% else %} {{ viagem.processo }}</p>
                     
 
                     {% if viagem.motorista %}
