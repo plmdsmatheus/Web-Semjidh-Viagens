@@ -59,11 +59,35 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="id_horario_ida" class="form-label">Horario de Saída:</label>
+                    {{ form.horario_ida }}
+                    {% if form.horario_ida.errors %}
+                        <div class="text-danger">
+                            {% for error in form.horario_ida.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
                     <label for="id_data_volta" class="form-label">Data de Volta:</label>
                     {{ form.data_volta }}
                     {% if form.data_volta.errors %}
                         <div class="text-danger">
                             {% for error in form.data_volta.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_horario_volta" class="form-label">Previsão do Horario da volta:</label>
+                    {{ form.horario_volta }}
+                    {% if form.horario_volta.errors %}
+                        <div class="text-danger">
+                            {% for error in form.horario_volta.errors %}
                                 <p>{{ error }}</p>
                             {% endfor %}
                         </div>

@@ -10,7 +10,7 @@ import csv
 
 @login_required
 def listar_viagens(request):
-    viagens = Viagem.objects.all().order_by('-criada_em')
+    viagens = Viagem.objects.all().order_by('data_ida')
     for viagem in viagens:
         viagem.servidores_lista = viagem.servidores.split(',')
     return render(request, 'viagens/listar_viagens.html', {'viagens': viagens})
