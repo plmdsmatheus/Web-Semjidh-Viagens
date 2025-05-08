@@ -11,7 +11,7 @@ class Motorista(models.Model):
 
 class Viagem(models.Model):
 
-SETOR_CHOICES = [
+    SETOR_CHOICES = [
         ('Gabinete',   'Gabinete'),
         ('Comunicação','Comunicação'),
         ('Adjunto',    'Adjunto'),
