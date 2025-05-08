@@ -37,7 +37,7 @@ class ViagemForm(forms.ModelForm):
             }),
             'setor': forms.Select(attrs={
                 'class': 'form-select'
-            })
+            }),
             'solicitante': forms.TextInput(attrs={
                 'placeholder': 'Digite o nome do solicitante',
                 'class': 'form-control'
