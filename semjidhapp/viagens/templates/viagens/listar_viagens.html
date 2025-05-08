@@ -3,74 +3,74 @@
 {% block title %}Listar Viagens{% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <h2 class="text-dark">Lista de Viagens</h2>
-        <ul class="list-group">
-            {% for viagem in viagens %}
-                <li class="list-group-item bg-light text-dark mb-3">
-                    <h5>{{ viagem.destino }} - {{ viagem.data_ida }} - {{ viagem.setor }}
-                        {% if viagem.status == 'Confirmada' or viagem.status == 'Atribuída' %}
-                            <span class="badge bg-success">{{ viagem.status }}</span>
-                        {% else %}
-                            <span class="badge bg-warning">{{ viagem.status }}</span>
-                        {% endif %}
-                    </h5>
-                    <p class="mb-1"><strong>Servidores:</strong></p>
-                    <ul class="list-unstyled ms-3">
-                        {% for servidores in viagem.servidores_lista %}
-                            <li class="text-dark">{{ servidores }}</li> <!-- Texto escuro -->
-                        {% endfor %}
-                    </ul>
-                    
-                    <p class="mb-1">
-                        <strong>Horário de ida:</strong>
-                        {% if viagem.horario_ida %}
-                          {{ viagem.horario_ida }}
-                        {% else %}
-                          Não definido
-                        {% endif %}
-                    
-                        <strong>- Previsão da volta:</strong>
-                        {% if viagem.horario_volta %}
-                          {{ viagem.horario_volta }}
-                        {% else %}
-                          Não definido
-                        {% endif %}
-                      </p>
-                    
-                      <p class="mb-1">
-                        <strong>Processo:</strong>
-                        {% if viagem.processo %}
-                          {{ viagem.processo }}
-                        {% else %}
-                          Processo não informado
-                        {% endif %}
-                      </p>
-                    
+<div class="container py-4">
+  <h2 class="text-dark">Lista de Viagens</h2>
+  <ul class="list-group">
+    {% for viagem in viagens %}
+      <li class="list-group-item bg-light text-dark mb-3">
+        <h5>
+          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
+          {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
+            <span class="badge bg-success">{{ viagem.status }}</span>
+          {% else %}
+            <span class="badge bg-warning">{{ viagem.status }}</span>
+          {% endif %}
+        </h5>
 
-                    {% if viagem.motorista %}
-                        <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
-                    {% endif %}
-
-                    {% if not viagem.motorista %}
-                        <a href="{% url 'designar_motorista' viagem.id %}"
-                        class="btn btn-primary btn-sm mt-2">
-                        Designar Motorista
-                        </a>
-                    {% else %}
-                        <a href="{% url 'designar_motorista' viagem.id %}"
-                        class="btn btn-secondary btn-sm mt-2">
-                        Alterar Motorista
-                        </a>
-                    {% endif %}
-                    
-                    <!-- Formulário para apagar a viagem -->
-                    <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
-                    </form>
-                </li>
-            {% endfor %}
+        <p class="mb-1"><strong>Servidores:</strong></p>
+        <ul class="list-unstyled ms-3">
+          {% for servidor in viagem.servidores_lista %}
+            <li class="text-dark">{{ servidor }}</li>
+          {% endfor %}
         </ul>
-    </div>
+
+        <p class="mb-1">
+          <strong>Horário de ida:</strong>
+          {% if viagem.horario_ida %}
+            {{ viagem.horario_ida }}
+          {% else %}
+            Não definido
+          {% endif %}
+
+          <strong>- Previsão da volta:</strong>
+          {% if viagem.horario_volta %}
+            {{ viagem.horario_volta }}
+          {% else %}
+            Não definido
+          {% endif %}
+        </p>
+
+        <p class="mb-1">
+          <strong>Processo:</strong>
+          {% if viagem.processo %}
+            {{ viagem.processo }}
+          {% else %}
+            Processo não informado
+          {% endif %}
+        </p>
+
+        {% if viagem.motorista %}
+          <p class="mt-2">
+            <strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}
+          </p>
+        {% endif %}
+
+        {% if not viagem.motorista %}
+          <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
+            Designar Motorista
+          </a>
+        {% else %}
+          <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
+            Alterar Motorista
+          </a>
+        {% endif %}
+
+        <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}
