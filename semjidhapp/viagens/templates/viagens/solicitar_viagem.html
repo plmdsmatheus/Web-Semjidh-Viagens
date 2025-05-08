@@ -107,6 +107,18 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="id_setor" class="form-label">Setor requisitante:</label>
+                    {{ form.setor }}
+                    {% if form.setor.errors %}
+                        <div class="text-danger">
+                            {% for error in form.setor.errors %}
+                                <p> {{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
                     <label for="id_solicitante" class="form-label">Solicitante:</label>
                     {{ form.solicitante }}
                     {% if form.solicitante.errors %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Motorista(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -9,6 +10,30 @@ class Motorista(models.Model):
         return self.nome
 
 class Viagem(models.Model):
+
+SETOR_CHOICES = [
+        ('Gabinete',   'Gabinete'),
+        ('Comunicação','Comunicação'),
+        ('Adjunto',    'Adjunto'),
+        ('Ouvidoria',  'Ouvidoria'),
+        ('Procon',     'Procon'),
+        ('CODIS',      'CODIS'),
+        ('COEPPIR',    'COEPPIR'),
+        ('SEJUV',      'SEJUV'),
+        ('SPM',        'SPM'),
+        ('CPDH',       'CPDH'),
+        ('CORDE',      'CORDE'),
+        ('ASJUR',      'ASJUR'),
+        ('UIAG',       'UIAG'),
+        ('UIFP',       'UIFP'),
+    ]
+
+     setor = models.CharField(
+        max_length=12,
+        choices=SETOR_CHOICES,
+        default='UIAG',
+        verbose_name='Setor'
+    )
     destino = models.CharField(max_length=100)
     data_ida = models.DateField()
     horario_ida = models.TimeField(null=True, blank=True, verbose_name='Horário de ida')

@@ -7,13 +7,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
 import csv
-import datetime
 
 @login_required
 def listar_viagens(request):
-    hoje = datetime.date.today()
-    viagens = list(Viagem.objects.all())
-    viagens.sort(key=lambda v: abs((v.data_ida - hoje).days))
+    viagens = Viagem.objects.all().order_by('data_ida')
     for viagem in viagens:
         viagem.servidores_lista = viagem.servidores.split(',')
     return render(request, 'viagens/listar_viagens.html', {'viagens': viagens})
