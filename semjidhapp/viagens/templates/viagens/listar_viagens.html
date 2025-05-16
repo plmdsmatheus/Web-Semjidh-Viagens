@@ -55,6 +55,12 @@
           </p>
         {% endif %}
 
+        {% if viagem.motorista %}
+        <p class="mt-2">
+          <strong>Local de Saída:</strong> {{viagem.local_partida}}
+          </p>
+        {% endif %}
+
         {% if not viagem.motorista %}
           <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
             Designar Motorista
@@ -64,11 +70,7 @@
             Alterar Motorista
           </a>
         {% endif %}
-          
-        <p class="mt-2">
-          <strong>Local de Saída:</strong> {{viagem.local_partida}}
-          </p>
-          
+
         <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
           {% csrf_token %}
           <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
