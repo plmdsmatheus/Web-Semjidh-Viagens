@@ -30,11 +30,11 @@ class Viagem(models.Model):
     setor = models.CharField(
         max_length=12,
         choices=SETOR_CHOICES,
-        default='UIAG',
         verbose_name='Setor'
     )
     destino = models.CharField(max_length=100)
     data_ida = models.DateField()
+    local_partida = models.TextField(default='SEMJIDH')
     horario_ida = models.TimeField(null=True, blank=True, verbose_name='Horário de ida')
     data_volta = models.DateField()
     horario_volta = models.TimeField(null=True, blank=True, verbose_name='Previsão de retorno')
