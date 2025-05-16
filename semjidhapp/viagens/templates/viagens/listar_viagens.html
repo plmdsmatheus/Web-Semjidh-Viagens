@@ -64,7 +64,11 @@
             Alterar Motorista
           </a>
         {% endif %}
-
+          
+        <p class="mt-2">
+          <strong>Local de Saída:</strong> {{viagem.local_partida}}
+          </p>
+          
         <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
           {% csrf_token %}
           <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>

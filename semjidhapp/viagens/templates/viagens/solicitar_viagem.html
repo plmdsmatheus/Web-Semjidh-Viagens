@@ -47,6 +47,18 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="id_local_partida" class="form-label">Local de saída:</label>
+                    {{ form.local_partida }}
+                    {% if form.local_partida.errors %}
+                        <div class="text-danger">
+                            {% for error in form.data_ida.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
                     <label for="id_data_ida" class="form-label">Data de Saída:</label>
                     {{ form.data_ida }}
                     {% if form.data_ida.errors %}
