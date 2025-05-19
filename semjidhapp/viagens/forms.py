@@ -4,7 +4,7 @@ from .models import Viagem, Motorista
 class ViagemForm(forms.ModelForm):
     class Meta:
         model = Viagem
-        fields = ['destino', 'data_ida', 'horario_ida', 'data_volta', 'horario_volta', 'servidores', 'setor', 'solicitante', 'processo']
+        fields = ['destino', 'data_ida', 'local_partida', 'horario_ida', 'data_volta', 'horario_volta', 'servidores', 'setor', 'solicitante', 'processo']
         widgets = {
             'destino': forms.TextInput(attrs={
                 'placeholder': 'Digite para onde será a viagem',
@@ -13,6 +13,11 @@ class ViagemForm(forms.ModelForm):
             }),
             'data_ida': forms.DateInput(format='%d/%m/%Y', attrs={
                 'placeholder': 'DD/MM/YYYY',
+                'type': 'text',
+                'class': 'form-control'
+            }),
+            'local_partida': forms.TextInput(attrs={
+                'placeholder': 'Qual ponto inicial da viagem?',
                 'type': 'text',
                 'class': 'form-control'
             }),

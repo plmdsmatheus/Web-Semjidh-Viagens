@@ -51,7 +51,7 @@
                     {{ form.local_partida }}
                     {% if form.local_partida.errors %}
                         <div class="text-danger">
-                            {% for error in form.data_ida.errors %}
+                            {% for error in form.local_partida.errors %}
                                 <p>{{ error }}</p>
                             {% endfor %}
                         </div>
