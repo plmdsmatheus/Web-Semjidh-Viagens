@@ -34,7 +34,7 @@ class Viagem(models.Model):
     )
     destino = models.CharField(max_length=100)
     data_ida = models.DateField()
-    local_partida = models.TextField(default='SEMJIDH')
+    local_partida = models.TextField()
     horario_ida = models.TimeField(null=True, blank=True, verbose_name='Horário de ida')
     data_volta = models.DateField()
     horario_volta = models.TimeField(null=True, blank=True, verbose_name='Previsão de retorno')
