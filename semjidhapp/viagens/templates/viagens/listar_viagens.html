@@ -24,7 +24,7 @@
           {% endfor %}
         </ul>
         
-        <p class="mb-1"><strong> Solicitada em: {{ viagem.criada_em }} </strong></p>
+        <p class="mb-1"><strong> Solicitada em: {{ viagem.criada_em|date:"d/m/Y H:i" }} </strong></p>
 
         <p class="mb-1">
           <strong>Horário de ida:</strong>
