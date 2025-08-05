@@ -9,7 +9,7 @@
     {% for viagem in viagens %}
       <li class="list-group-item bg-light text-dark mb-3">
         <h5>
-          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }} - {{ viagem.criada_em }}
+          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
           {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
             <span class="badge bg-success">{{ viagem.status }}</span>
           {% else %}
@@ -23,6 +23,8 @@
             <li class="text-dark">{{ servidor }}</li>
           {% endfor %}
         </ul>
+        
+        <p class="mb-1"><strong> Solicitada em: {{ viagem.criada_em }} </strong></p>
 
         <p class="mb-1">
           <strong>Horário de ida:</strong>
