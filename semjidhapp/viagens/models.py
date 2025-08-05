@@ -48,7 +48,7 @@ class Viagem(models.Model):
         choices=[('Pendente', 'Pendente'), ('Atribuída', 'Atribuída'), ('Concluída', 'Concluída')],
         default='Pendente'
     )
-    criada_em = models.DateTimeField(auto_now_add=True, default=timezone.now)
+    criada_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.destino} - {self.data_ida}"
