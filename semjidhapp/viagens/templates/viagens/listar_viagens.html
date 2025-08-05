@@ -9,7 +9,7 @@
     {% for viagem in viagens %}
       <li class="list-group-item bg-light text-dark mb-3">
         <h5>
-          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
+          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }} - {{ viagem.criada_em }}
           {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
             <span class="badge bg-success">{{ viagem.status }}</span>
           {% else %}
