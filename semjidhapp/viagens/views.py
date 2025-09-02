@@ -7,13 +7,21 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponse
 import csv
+from django.core.paginator import Paginator
 
 @login_required
 def listar_viagens(request):
-    viagens = Viagem.objects.all().order_by('-data_ida')
+    viagens = Viagem.objects.select_related('motorista').all().order_by('-data_ida')
+
     for viagem in viagens:
         viagem.servidores_lista = viagem.servidores.split(',')
-    return render(request, 'viagens/listar_viagens.html', {'viagens': viagens})
+
+    # Paginação: 20 viagens por página
+    paginator = Paginator(viagens, 20)  # ajuste o número conforme quiser
+    page_number = request.GET.get('page')  # pega o número da página da URL
+    page_obj = paginator.get_page(page_number)  # retorna a página correta
+
+    return render(request, 'viagens/listar_viagens.html', {'page_obj': page_obj})
 
 def solicitar_viagem(request):
     if request.method == 'POST':

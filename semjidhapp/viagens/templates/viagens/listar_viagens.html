@@ -6,7 +6,7 @@
 <div class="container py-4">
   <h2 class="text-dark">Lista de Viagens</h2>
   <ul class="list-group">
-    {% for viagem in viagens %}
+    {% for viagem in page_obj %}
       <li class="list-group-item bg-light text-dark mb-3">
         <h5>
           {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
