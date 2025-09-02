@@ -24,50 +24,27 @@
           {% endfor %}
         </ul>
         
-        <p class="mb-1"><strong> Solicitada em: {{ viagem.criada_em|date:"d/m/Y H:i" }} </strong></p>
+        <p class="mb-1"><strong>Solicitada em:</strong> {{ viagem.criada_em|date:"d/m/Y H:i" }}</p>
 
         <p class="mb-1">
-          <strong>Horário de ida:</strong>
-          {% if viagem.horario_ida %}
-            {{ viagem.horario_ida }}
-          {% else %}
-            Não definido
-          {% endif %}
-
-          <strong>- Previsão da volta:</strong>
-          {% if viagem.horario_volta %}
-            {{ viagem.horario_volta }}
-          {% else %}
-            Não definido
-          {% endif %}
+          <strong>Horário de ida:</strong> {{ viagem.horario_ida|default:"Não definido" }} -
+          <strong>Previsão da volta:</strong> {{ viagem.horario_volta|default:"Não definido" }}
         </p>
 
         <p class="mb-1">
-          <strong>Processo:</strong>
-          {% if viagem.processo %}
-            {{ viagem.processo }}
-          {% else %}
-            Processo não informado
-          {% endif %}
+          <strong>Processo:</strong> {{ viagem.processo|default:"Processo não informado" }}
         </p>
 
         {% if viagem.motorista %}
-          <p class="mt-2">
-            <strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}
-          </p>
-        {% endif %}
-
-        {% if viagem.motorista %}
-        <p class="mt-2">
-          <strong>Local de Saída:</strong> {{viagem.local_partida}}
-          </p>
-        {% endif %}
-
-        {% if not viagem.motorista %}
+          <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
+          <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
+        {% else %}
           <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
             Designar Motorista
           </a>
-        {% else %}
+        {% endif %}
+
+        {% if viagem.motorista %}
           <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
             Alterar Motorista
           </a>
@@ -80,5 +57,28 @@
       </li>
     {% endfor %}
   </ul>
+
+  <!-- Navegação da página -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div>
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary btn-sm">Anterior</a>
+      {% endif %}
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary btn-sm">Próxima</a>
+      {% endif %}
+    </div>
+
+    <div>
+      <form method="get">
+        <label for="page_select">Ir para a página:</label>
+        <select id="page_select" name="page" onchange="this.form.submit()" class="form-select d-inline w-auto">
+          {% for i in paginator.page_range %}
+            <option value="{{ i }}" {% if page_obj.number == i %}selected{% endif %}>{{ i }}</option>
+          {% endfor %}
+        </select>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

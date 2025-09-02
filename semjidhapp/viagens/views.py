@@ -11,17 +11,18 @@ from django.core.paginator import Paginator
 
 @login_required
 def listar_viagens(request):
-    viagens = Viagem.objects.select_related('motorista').all().order_by('-data_ida')
-
-    for viagem in viagens:
-        viagem.servidores_lista = viagem.servidores.split(',')
+    viagens = Viagem.objects.select_related('motorista').order_by('-data_ida')
 
     # Paginação: 20 viagens por página
-    paginator = Paginator(viagens, 20)  # ajuste o número conforme quiser
-    page_number = request.GET.get('page')  # pega o número da página da URL
-    page_obj = paginator.get_page(page_number)  # retorna a página correta
+    paginator = Paginator(viagens, 20)
+    page_number = request.GET.get('page') or 1
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, 'viagens/listar_viagens.html', {'page_obj': page_obj})
+    context = {
+        'page_obj': page_obj,
+        'paginator': paginator,  # necessário para o dropdown
+    }
+    return render(request, 'viagens/listar_viagens.html', context)
 
 def solicitar_viagem(request):
     if request.method == 'POST':

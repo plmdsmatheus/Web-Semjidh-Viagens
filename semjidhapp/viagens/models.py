@@ -50,5 +50,9 @@ class Viagem(models.Model):
     )
     criada_em = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def servidores_lista(self):
+        return self.servidores.split(',')
+
     def __str__(self):
         return f"{self.destino} - {self.data_ida}"
