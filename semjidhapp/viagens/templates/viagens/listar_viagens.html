@@ -8,9 +8,9 @@
   <ul class="list-group">
     {% for viagem in page_obj %}
       <li class="list-group-item bg-light text-dark mb-3">
-        <!-- Título Centralizado -->
-        <div class="row justify-content-center mb-2">
-          <div class="col-md-12 text-center">
+        <div class="row">
+          <!-- Coluna da Esquerda -->
+          <div class="col-md-6">
             <h5>
               {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
               {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
@@ -19,12 +19,7 @@
                 <span class="badge bg-warning">{{ viagem.status }}</span>
               {% endif %}
             </h5>
-          </div>
-        </div>
 
-        <div class="row">
-          <!-- Coluna da Esquerda -->
-          <div class="col-md-6">
             <p class="mb-1"><strong>Servidores:</strong></p>
             <ul class="list-unstyled ms-3">
               {% for servidor in viagem.servidores_lista %}
@@ -73,7 +68,7 @@
     {% endfor %}
   </ul>
 
-  <!-- Navegação da página (mantido igual) -->
+  <!-- Navegação da página -->
   <div class="d-flex justify-content-between align-items-center mt-3">
     <div>
       {% if page_obj.has_previous %}
