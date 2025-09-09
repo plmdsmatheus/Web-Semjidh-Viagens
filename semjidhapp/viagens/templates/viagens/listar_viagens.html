@@ -47,6 +47,10 @@
               <strong>Previsão da volta:</strong> {{ viagem.horario_volta|default:"Não definido" }}
             </p>
 
+            {% if not viagem.motorista %}
+              <p class="mt-2"><strong>Data de Volta:</strong> {{ viagem.data_volta }}</p>
+            {% endif %}
+
             {% if viagem.motorista %}
               <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
               <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
@@ -54,10 +58,6 @@
               <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
                 Designar Motorista
               </a>
-            {% endif %}
-
-            {% if not viagem.motorista %}
-              <p class="mt-2"><strong>Data de Volta:</strong> {{ viagem.data_volta }}</p>
             {% endif %}
 
             {% if viagem.motorista %}
