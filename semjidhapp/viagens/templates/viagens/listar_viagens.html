@@ -32,6 +32,9 @@
             <p class="mb-1">
               <strong>Processo:</strong> {{ viagem.processo|default:"Processo não informado" }}
             </p>
+
+            {% if viagem.motorista %}
+              <p class="mt-2"><strong>Data de Volta:</strong> {{ viagem.data_volta }}</p>
           </div>
 
           <!-- Coluna da Direita -->
@@ -51,6 +54,9 @@
                 Designar Motorista
               </a>
             {% endif %}
+
+            {% if not viagem.motorista %}
+              <p class="mt-2"><strong>Data de Volta:</strong> {{ viagem.data_volta }}</p>
 
             {% if viagem.motorista %}
               <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
