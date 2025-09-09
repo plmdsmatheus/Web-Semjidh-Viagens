@@ -8,52 +8,62 @@
   <ul class="list-group">
     {% for viagem in page_obj %}
       <li class="list-group-item bg-light text-dark mb-3">
-        <h5>
-          {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
-          {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
-            <span class="badge bg-success">{{ viagem.status }}</span>
-          {% else %}
-            <span class="badge bg-warning">{{ viagem.status }}</span>
-          {% endif %}
-        </h5>
+        <div class="row">
+          <!-- Coluna da Esquerda -->
+          <div class="col-md-6">
+            <h5>
+              {{ viagem.destino }} – {{ viagem.data_ida }} – {{ viagem.setor }}
+              {% if viagem.status == "Concluída" or viagem.status == "Atribuída" %}
+                <span class="badge bg-success">{{ viagem.status }}</span>
+              {% else %}
+                <span class="badge bg-warning">{{ viagem.status }}</span>
+              {% endif %}
+            </h5>
 
-        <p class="mb-1"><strong>Servidores:</strong></p>
-        <ul class="list-unstyled ms-3">
-          {% for servidor in viagem.servidores_lista %}
-            <li class="text-dark">{{ servidor }}</li>
-          {% endfor %}
-        </ul>
-        
-        <p class="mb-1"><strong>Solicitada em:</strong> {{ viagem.criada_em|date:"d/m/Y H:i" }}</p>
+            <p class="mb-1"><strong>Servidores:</strong></p>
+            <ul class="list-unstyled ms-3">
+              {% for servidor in viagem.servidores_lista %}
+                <li class="text-dark">{{ servidor }}</li>
+              {% endfor %}
+            </ul>
+            
+            <p class="mb-1"><strong>Solicitada em:</strong> {{ viagem.criada_em|date:"d/m/Y H:i" }}</p>
 
-        <p class="mb-1">
-          <strong>Horário de ida:</strong> {{ viagem.horario_ida|default:"Não definido" }} -
-          <strong>Previsão da volta:</strong> {{ viagem.horario_volta|default:"Não definido" }}
-        </p>
+            <p class="mb-1">
+              <strong>Processo:</strong> {{ viagem.processo|default:"Processo não informado" }}
+            </p>
+          </div>
 
-        <p class="mb-1">
-          <strong>Processo:</strong> {{ viagem.processo|default:"Processo não informado" }}
-        </p>
+          <!-- Coluna da Direita -->
+          <div class="col-md-6">
+            <p class="mb-1">
+              <strong>Horário de ida:</strong> {{ viagem.horario_ida|default:"Não definido" }}
+            </p>
+            <p class="mb-1">
+              <strong>Previsão da volta:</strong> {{ viagem.horario_volta|default:"Não definido" }}
+            </p>
 
-        {% if viagem.motorista %}
-          <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
-          <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
-        {% else %}
-          <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
-            Designar Motorista
-          </a>
-        {% endif %}
+            {% if viagem.motorista %}
+              <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
+              <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
+            {% else %}
+              <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
+                Designar Motorista
+              </a>
+            {% endif %}
 
-        {% if viagem.motorista %}
-          <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
-            Alterar Motorista
-          </a>
-        {% endif %}
+            {% if viagem.motorista %}
+              <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
+                Alterar Motorista
+              </a>
+            {% endif %}
 
-        <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
-        </form>
+            <form action="{% url 'apagar_viagem' viagem.id %}" method="post" class="mt-2">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Apagar Viagem</button>
+            </form>
+          </div>
+        </div>
       </li>
     {% endfor %}
   </ul>
