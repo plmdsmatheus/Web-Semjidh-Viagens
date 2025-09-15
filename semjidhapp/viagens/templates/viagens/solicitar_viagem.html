@@ -45,6 +45,17 @@
                         </div>
                     {% endif %}
                 </div>
+                <div class="mb-3">
+                    <label for="id_veiculo" class="form-label">Veiculo desejado:</label>
+                    {{ form.veiculo }}
+                    {% if form.veiculo.errors %}
+                        <div class="text-danger">
+                            {% for error in form.veiculo.errors %}
+                                <p> {{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
 
                 <div class="mb-3">
                     <label for="id_local_partida" class="form-label">Local de saída:</label>

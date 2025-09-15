@@ -28,6 +28,12 @@ class Viagem(models.Model):
         ('UIFP',       'UIFP'),
     ]
 
+    VEICULOS_CHOICES = [
+        ('Carro (4 lugares)', 'Carro (4 lugares)'),
+        ('Carro (6 lugares)', 'Carro (6 lugares)'),
+        ('Ônibus', 'Ônibus'),
+    ]
+
     setor = models.CharField(
         max_length=12,
         choices=SETOR_CHOICES,
@@ -49,6 +55,11 @@ class Viagem(models.Model):
         default='Pendente'
     )
     criada_em = models.DateTimeField(auto_now_add=True)
+    veiculo = models.CharField(
+        max_length=20,
+        choices=VEICULOS_CHOICES,
+        verbose_name='Veículo'
+    )
 
     @property
     def servidores_lista(self):
