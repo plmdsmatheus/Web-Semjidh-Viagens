@@ -174,7 +174,7 @@ def cadastrar_carro(request):
 @login_required
 def listar_carros(request):
     carros = Carro.objects.all()
-    return render(request, 'viagens/listar_carrp.html', {'carros': carros})
+    return render(request, 'viagens/listar_carro.html', {'carros': carros})
 
 @login_required
 def apagar_carro(request, id):
