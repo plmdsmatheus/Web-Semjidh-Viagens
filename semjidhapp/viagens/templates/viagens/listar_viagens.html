@@ -54,7 +54,7 @@
             {% if viagem.motorista %}
               <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
               {% if viagem.veiculo %}
-                <p class="mt-2"><strong>Carro Designado:</strong> {{ viagem.carro }}</p>
+                <p class="mt-2"><strong>Carro Designado:</strong> {{ viagem.carro|default:"Não definido" }}</p>
               <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
               {% endif %}
               
