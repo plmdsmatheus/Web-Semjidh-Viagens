@@ -68,7 +68,7 @@ class Viagem(models.Model):
         choices=VEICULOS_CHOICES,
         verbose_name='Veículo'
     )
-    carro = models.ForeignKey(Carro, null=True, blank=True, max_length=200)
+    carro = models.ForeignKey(Carro, null=True, blank=True, max_length=200, on_delete=models.SET_NULL)
 
     @property
     def servidores_lista(self):
