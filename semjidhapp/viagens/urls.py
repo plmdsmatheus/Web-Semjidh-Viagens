@@ -12,4 +12,5 @@ urlpatterns = [
     path('exportar_viagens/', views.exportar_viagens, name='exportar_viagens'),
     path('listar_carros/', views.listar_carros, name='listar_carros'),
     path('carro/<int:id>/apagar/', views.apagar_carro, name='apagar_carro'),
+    path('cadastrar_carro/', views.cadastrar_carro, name='cadastrar_carro'),
 ]
