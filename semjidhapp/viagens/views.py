@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Viagem, Motorista
-from .forms import ViagemForm, MotoristaForm
+from .models import Viagem, Motorista, Carro
+from .forms import ViagemForm, MotoristaForm, CarroForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
@@ -156,3 +156,44 @@ def exportar_viagens(request):
         ])
 
     return response
+
+@login_required
+def cadastrar_carro(request):
+    if request.method == 'POST':
+        form = CarroForm(request.POST)
+        if form.is_valid():
+            form.save()  # Salva o carro no banco de dados
+            
+            messages.success(request, 'Carro cadastrado com sucesso!')
+            return redirect('listar_carros')  # Redireciona para a página de listagem dos carro
+    else:
+        form = CarroFrom()
+    
+    return render(request, 'viagens/cadastrar_carro.html', {'form': form})
+
+@login_required
+def listar_carros(request):
+    carros = Carro.objects.all()
+    return render(request, 'viagens/listar_carrp.html', {'carros': carros})
+
+@login_required
+def apagar_carro(request, id):
+    carro = get_object_or_404(Carro, id=id)
+
+    if request.method == 'POST':
+        carro.delete()
+        return redirect('listar_carros')
+
+@login_required
+def designar_carro(request, viagem_id):
+    viagem = Viagem.objects.get(id=viagem_id)
+    carros = Carro.objects.all()
+    if request.method == 'POST':
+        carro_id = request.POST.get('carro')
+        carro = Carro.objects.get(id=carro_id)
+        viagem.carro = carro
+        viagem.status = 'Atribuída'
+        viagem.save()
+        messages.success(request, 'Carro designado com sucesso!')
+        return redirect('listar_viagens')
+    return render(request, 'viagens/designar_carro.html', {'viagem': viagem, 'carros': carros})

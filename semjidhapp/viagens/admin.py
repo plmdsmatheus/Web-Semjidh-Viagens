@@ -3,3 +3,4 @@ from viagens.models import Viagem, Motorista
 
 admin.site.register(Viagem)
 admin.site.register(Motorista)
+admin.site.register(Carro)

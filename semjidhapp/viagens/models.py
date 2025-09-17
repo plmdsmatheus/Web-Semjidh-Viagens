@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+class Carro(models.Model):
+    marca = models.CharField(max_length=20)
+    modelo = models.CharField(max_length=30)
+    placa = models.CharFiel(max_length=7)
+
+    def __str__(self):
+        return self.marca + " " + self.modelo "-" + self.placa
+
 class Motorista(models.Model):
     nome = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -60,6 +68,7 @@ class Viagem(models.Model):
         choices=VEICULOS_CHOICES,
         verbose_name='Veículo'
     )
+    carro = models.ForeignKey(Carro, null=True, blank=True, max_length=200)
 
     @property
     def servidores_lista(self):

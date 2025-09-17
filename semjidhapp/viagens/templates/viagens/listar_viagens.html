@@ -54,6 +54,18 @@
             {% if viagem.motorista %}
               <p class="mt-2"><strong>Motorista Atribuído:</strong> {{ viagem.motorista.nome }}</p>
               <p class="mt-2"><strong>Local de Saída:</strong> {{ viagem.local_partida }}</p>
+              
+              <!-- Botão para Designar Carro (aparece apenas se motorista estiver designado) -->
+              {% if not viagem.veiculo %}
+                <a href="{% url 'designar_carro' viagem.id %}" class="btn btn-info btn-sm mt-2">
+                  Designar Carro
+                </a>
+              {% else %}
+                <a href="{% url 'designar_carro' viagem.id %}" class="btn btn-secondary btn-sm mt-2">
+                  Alterar Carro
+                </a>
+              {% endif %}
+              
             {% else %}
               <a href="{% url 'designar_motorista' viagem.id %}" class="btn btn-primary btn-sm mt-2">
                 Designar Motorista

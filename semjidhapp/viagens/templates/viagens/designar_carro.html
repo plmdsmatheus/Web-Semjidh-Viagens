@@ -1,0 +1,33 @@
+{% extends 'viagens/base_generic.html' %}
+
+{% block title %}SEMJIDH - Designar Carro{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <h2 class="text-dark mb-4">Designar Carro para a Viagem: <strong>{{ viagem.destino }}</strong></h2>
+
+    {% if carros %}
+      <form method="post" class="bg-white p-4 rounded shadow-sm">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="carro" class="form-label">Selecione um Carro:</label>
+          <select name="carro" id="carro" class="form-select" required>
+            <option value="" disabled selected>Selecione um carro</option>
+            {% for carro in carros %}
+              <option value="{{ carro.id }}">{{ carro }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">Designar</button>
+        </div>
+      </form>
+    {% else %}
+      <div class="alert alert-warning">
+        Nenhum carro disponível no momento.
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
