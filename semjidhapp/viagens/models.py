@@ -8,7 +8,7 @@ class Carro(models.Model):
     placa = models.CharFiel(max_length=7)
 
     def __str__(self):
-        return self.marca + " " + self.modelo "-" + self.placa
+        return self.marca + " " + self.modelo + "-" + self.placa
 
 class Motorista(models.Model):
     nome = models.CharField(max_length=100)
