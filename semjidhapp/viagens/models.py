@@ -5,7 +5,7 @@ from django.utils import timezone
 class Carro(models.Model):
     marca = models.CharField(max_length=20)
     modelo = models.CharField(max_length=30)
-    placa = models.CharFiel(max_length=7)
+    placa = models.CharField(max_length=7)
 
     def __str__(self):
         return self.marca + " " + self.modelo + "-" + self.placa
