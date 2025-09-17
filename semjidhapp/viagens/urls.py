@@ -13,4 +13,5 @@ urlpatterns = [
     path('listar_carros/', views.listar_carros, name='listar_carros'),
     path('carro/<int:id>/apagar/', views.apagar_carro, name='apagar_carro'),
     path('cadastrar_carro/', views.cadastrar_carro, name='cadastrar_carro'),
+    path('designar_carro/<int:viagem_id>/', views.designar_carro, name='designar_carro'),
 ]
