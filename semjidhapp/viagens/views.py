@@ -167,7 +167,7 @@ def cadastrar_carro(request):
             messages.success(request, 'Carro cadastrado com sucesso!')
             return redirect('listar_carros')  # Redireciona para a página de listagem dos carro
     else:
-        form = CarroFrom()
+        form = CarroForm()
     
     return render(request, 'viagens/cadastrar_carro.html', {'form': form})
 
