@@ -1,5 +1,5 @@
 from django.contrib import admin
-from viagens.models import Viagem, Motorista
+from viagens.models import Viagem, Motorista, Carro
 
 admin.site.register(Viagem)
 admin.site.register(Motorista)
