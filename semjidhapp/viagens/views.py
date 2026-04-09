@@ -197,3 +197,14 @@ def designar_carro(request, viagem_id):
         messages.success(request, 'Carro designado com sucesso!')
         return redirect('listar_viagens')
     return render(request, 'viagens/designar_carro.html', {'viagem': viagem, 'carros': carros})
+
+def atualizar_volta_real(request, viagem_id):
+    if request.method == 'POST':
+        viagem = get_object_or_404(Viagem, id=viagem_id)
+        horario = request.POST.get('horario_volta_real')
+
+        if horario:
+            viagem.horario_volta_real = horario
+            viagem.save()
+
+    return redirect('listar_viagens')

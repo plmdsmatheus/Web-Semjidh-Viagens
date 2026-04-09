@@ -47,6 +47,25 @@
               <strong>Previsão da volta:</strong> {{ viagem.horario_volta|default:"Não definido" }}
             </p>
 
+            {% if viagem.motorista %}
+              <form method="post" action="{% url 'atualizar_volta_real' viagem.id %}" class="mt-2">
+                {% csrf_token %}
+                
+                <label><strong>Horário real da volta:</strong></label>
+                <input type="time" name="horario_volta_real" class="form-control mb-2"
+                      value="{{ viagem.horario_volta_real|time:'H:i' }}">
+                
+                <button type="submit" class="btn btn-success btn-sm">
+                  Salvar Horário Real
+                </button>
+              </form>
+            {% endif %}
+
+            <p class="mb-1">
+              <strong>Volta Real:</strong>
+              {{ viagem.horario_volta_real|default:"Não informado" }}
+            </p>
+
             {% if not viagem.motorista %}
               <p class="mt-2"><strong>Data de Volta:</strong> {{ viagem.data_volta }}</p>
             {% endif %}
